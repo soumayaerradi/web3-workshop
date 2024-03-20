@@ -1,0 +1,108 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  font-family: "Roboto Light", sans-serif;
+
+  button {
+    width: 200px;
+    height: 30px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: cadetblue;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  h1 {
+    font-size: 35px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+
+  input {
+    width: 300px;
+    height: 18px;
+    padding: 5px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .column-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+
+  .nft-box {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .nft-item {
+    width: calc(244px - 30px);
+    background: linear-gradient(140.61deg, #020755 9.03%, #0019a3 93.9%);
+    box-shadow: 0 2px 10px 1px rgba(0, 25, 163, 0.1);
+    border-radius: 13px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    .image {
+      width: 214.32px;
+      height: 214.32px;
+      border-radius: 15px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .nft-info {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      span {
+        font-family: "Work Sans", sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 15px;
+        line-height: 18px;
+        color: #ffffff;
+      }
+
+      .nft-description {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+      }
+    }
+  }
+}

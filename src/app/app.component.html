@@ -1,4 +1,73 @@
 <div class="app-container">
   <h1>My first dApp</h1>
-  <p>My first decentralized application (dApp) using Ethereum Sepolia and Polygon Mumbai.</p>
+  <p>My first decentralized application (dApp) using Ethereum and Solidity.</p>
+
+  <div class="column-container">
+    <button id="connectButton" *ngIf="!isWalletConnected" (click)="connectWallet()">Connect Wallet</button>
+    <span id="account" *ngIf="isWalletConnected">Wallet: {{ account }}</span>
+  </div>
+
+  <div class="column-container" *ngIf="isWalletConnected">
+    <h2>Network Info</h2>
+    <button (click)="checkNetwork()">Check network</button>
+    <span id="network" *ngIf="network">Network: {{ network }}</span>
+
+    <div class="row-container" *ngIf="network">
+      <button (click)="changeNetwork('0x13881')">Connect Mumbai</button>
+      <button (click)="changeNetwork('0xaa36a7')">Connect Sepolia</button>
+    </div>
+  </div>
+
+  <div class="column-container" *ngIf="isWalletConnected && chainId === SEPOLIA_NETWORK.chainId">
+    <h2>Token Info</h2>
+    <button id="tokenInfoButton" (click)="readTokenInfo()">Get Token Info</button>
+
+    <div class="token-info" *ngIf="tokenInfo">
+      <p>Name: {{ tokenInfo.name }}</p>
+      <p>Symbol: {{ tokenInfo.symbol }}</p>
+      <p>Decimals: {{ tokenInfo.decimals }}</p>
+      <p>Balance: {{ tokenInfo.balance }}</p>
+    </div>
+
+
+    <div class="column-container">
+      <h2>Allowance</h2>
+      <div class="row-container">
+        <button id="allowanceButton" (click)="readAllowance()">Get Allowance</button>
+        <span *ngIf="allowanceAmount">Allowance: {{ allowanceAmount }}</span>
+      </div>
+
+      <div class="row-container">
+        <input type="text" [(ngModel)]="approveAmount" placeholder="Amount"/>
+        <button id="approveButton" (click)="approveTokens()">Approve</button>
+      </div>
+    </div>
+
+    <div class="column-container">
+      <h2>Transfer Tokens</h2>
+      <input type="text" [(ngModel)]="transferAddress" placeholder="Address"/>
+      <input type="text" [(ngModel)]="transferAmount" placeholder="Amount"/>
+      <button id="transferButton" (click)="transferTokens()">Transfer</button>
+    </div>
+  </div>
+
+  <div class="column-container" *ngIf="isWalletConnected && chainId === POLYGON_MUMBAI_NETWORK.chainId">
+    <h2>NFT Info</h2>
+    <button id="nftInfoButton" (click)="readNFTInfo()">Get NFT Info</button>
+
+    <div class="nft-box">
+      <ng-container *ngFor="let nft of nftList">
+        <div class="nft-item" *ngIf="nft">
+          <div
+            class="image"
+            [style.background-image]="'url(' + nft.imageUrl + ')'"
+          ></div>
+
+          <div class="nft-info">
+            <span class="nft-description">{{ nft.name + ": " + nft.description }}</span>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>
